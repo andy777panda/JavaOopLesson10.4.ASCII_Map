@@ -10,6 +10,7 @@ public class ASCIIletters {
 
 	public ASCIIletters() {
 		super();
+		// symbole-codes from http://arduino.on.kg/matrix-font
 		asciiLetters.put('A', new int[] { 24, 60, 102, 102, 126, 102, 102, 0 });
 		asciiLetters.put('B', new int[] { 124, 102, 102, 124, 102, 102, 124, 0 });
 		asciiLetters.put('C', new int[] { 60, 102, 192, 192, 192, 102, 60, 0 });
@@ -36,14 +37,33 @@ public class ASCIIletters {
 		asciiLetters.put('X', new int[] { 102, 102, 60, 24, 60, 102, 102, 0 });
 		asciiLetters.put('Y', new int[] { 102, 102, 102, 60, 24, 24, 24, 0 });
 		asciiLetters.put('Z', new int[] { 254, 6, 12, 24, 48, 96, 254, 0 });
+		asciiLetters.put('0', new int[] { 124, 198, 206, 222, 246, 230, 124, 0 });
+		asciiLetters.put('1', new int[] { 48, 112, 48, 48, 48, 48, 48, 0 });
+		asciiLetters.put('2', new int[] { 120, 204, 12, 56, 96, 192, 252, 0 });
+		asciiLetters.put('3', new int[] { 120, 204, 12, 56, 12, 204, 120, 0 });
+		asciiLetters.put('4', new int[] { 28, 60, 108, 204, 254, 12, 12, 0 });
+		asciiLetters.put('5', new int[] { 252, 192, 248, 12, 12, 204, 120, 0 });
+		asciiLetters.put('6', new int[] { 56, 96, 192, 248, 204, 204, 120, 0 });
+		asciiLetters.put('7', new int[] { 252, 12, 12, 24, 48, 48, 48, 0 });
+		asciiLetters.put('8', new int[] { 120, 204, 204, 120, 204, 204, 120, 0 });
+		asciiLetters.put('9', new int[] { 120, 204, 204, 124, 12, 24, 112, 0 });
 	}
 
-	public Map<Character, int[]> getAsciiLetters() {
-		return asciiLetters;
-	}
-
-	public int[] getOtherLetter() {
-		return otherLetter;
+	public void printASCIIString(String word) {
+		int[] ch;
+		char[] letters = word.toUpperCase().toCharArray();
+		for (int i = 0; i < 8; i++) {
+			for (char letter : letters) {
+				if (asciiLetters.containsKey(letter))
+					ch = asciiLetters.get(letter);
+				else
+					ch = otherLetter;
+				System.out.print(String.format("%8s", Integer.toBinaryString(ch[i])).replace('0', ' ')
+						.replace('1', '#')
+						+ "  ");
+			}
+			System.out.println();
+		}
 	}
 
 }
