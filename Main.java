@@ -1,10 +1,8 @@
 package net.ukr.andy777;
 
-import java.util.HashMap;
+import java.io.File;
 import java.util.Map;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
 
 /*
  Lesson10
@@ -20,9 +18,9 @@ import java.util.Set;
 
 public class Main {
 	public static void main(String[] args) {
+		File file = new File (".\\src\\net\\ukr\\andy777\\asciiLetters.txt");
 		Scanner sc = new Scanner(System.in);
-		ASCIIletters ascii = new ASCIIletters();
-		
+		ASCIIletters ascii = new ASCIIletters(file);
 		System.out.print("input word: ");
 		String word = sc.next();
 		ascii.printASCIIString(word);
